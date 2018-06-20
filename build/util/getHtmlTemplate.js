@@ -10,7 +10,7 @@ const getFilePath = (path) => {
         if (stats.isDirectory()) { // 如果是目录，则继续递归执行
             getFilePath(tmpPath);
         } else {
-            /index\.html$/.test(tmpPath) && entries.push(tmpPath);// 只获取js
+            /index\.tpl$/.test(tmpPath) && entries.push(tmpPath);// 只获取js
         }
     });
 };
@@ -24,9 +24,10 @@ const getHtmlTemplate = (dir) => {
     const plugins = entries.map((item, i) => {
         const itemName = item.replace(dir, '').slice(1);
         return new HtmlWebpackPlugin({
-            template: item,
-            filename: '../views/'+itemName,
-            assetName: itemName.slice(0, -5),
+            // template: item,
+            template: './client/skins/index.html',
+            filename: '../views/'+itemName.replace(/\.tpl$/g,'.html'),
+            assetName: itemName.slice(0, -4),
             cache: true,
             inject: false
         });

@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:pro": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./build/webpack.production.config.js",
     "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config ./build/webpack.develop.config.js",
-    "dev": "cross-env NODE_ENV=development supervisor index.js -w index.js ./build ./server",
-    "run": "cross-env NODE_ENV=production node index.js"
+    "dev": "cross-env NODE_ENV=development node index.js",
+    "pro": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./build/webpack.production.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -43,11 +42,13 @@
     "ejs": "^2.6.1",
     "ejs-compiled-loader": "^1.1.0",
     "ejs-loader": "^0.3.1",
+    "jquery": "^3.3.1",
     "koa": "^2.5.1",
     "koa-body": "^4.0.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.3",
-    "koa-views": "^6.1.4"
+    "koa-views": "^6.1.4",
+    "reset-css": "^4.0.1"
   }
 }

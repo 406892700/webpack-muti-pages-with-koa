@@ -7,6 +7,17 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "npm run pro",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "pro"
+            ],
+            "port": 9229
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "npm run dev",
             "program": "${workspaceFolder}/index.js",
             "env": {

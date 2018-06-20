@@ -15,7 +15,7 @@ const basePath = './';
 module.exports = {
   entry: getEntries('./client/skins'),
   output: {
-    filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
+    filename: isProd ? '[name].[hash].js' : '[name].[hash].js',
     path: path.resolve(basePath, 'dist/client/skins/'),
     publicPath: '/',
   },
@@ -41,7 +41,7 @@ module.exports = {
         use: 'url-loader?limit=8192&context=client&name=[path][name].[ext]',
       },
       {
-        test: /\.template$/,
+        test: /\.tpl$/,
         use: [
           {
             loader: path.resolve('./build/util/template-loader.js'),
@@ -62,10 +62,6 @@ module.exports = {
     }
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: !isProd ? '[name].css' : '[name].[hash].css',
-      chunkFilename: !isProd ? '[id].css' : '[id].[hash].css',
-    }),
     new cleanWebpackPlugin(
       'dist',
       {
@@ -74,6 +70,10 @@ module.exports = {
         verbose: true
       }
     ),
+    new MiniCssExtractPlugin({
+      filename: !isProd ? '[name].[hash].css' : '[name].[chunkhash].css',
+      chunkFilename: !isProd ? '[id].[hash].css' : '[id].[chunkhash].css',
+    }),
     ...getHtmlTemplate('./client/skins')
   ]
 };

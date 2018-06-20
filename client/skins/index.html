@@ -1,0 +1,25 @@
+<% const _chunk = htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.assetName] || {}; %>
+<% const _commonChunk = htmlWebpackPlugin.files.chunks['commons'] || {}%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%=require('./templates/head.tpl')%>
+    <%if(process.env.NODE_ENV === 'production') {%>
+    <link rel="stylesheet" href="<%=_chunk.css%>">
+    <%}%>
+</head>
+<body>
+    <div id="root">
+        <% if(htmlWebpackPlugin.options.assetName) {%>
+        <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
+        <% }%>
+    </div>
+
+    <%if(process.env.NODE_ENV === 'production') {%>
+    <script src="<%=_commonChunk.entry%>"></script>
+    <%}%>
+    <script src="<%=_chunk.entry%>"></script>
+</body>
+</html>

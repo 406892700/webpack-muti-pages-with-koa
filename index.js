@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-19 15:55:19
+ * @Last Modified time: 2018-06-20 15:32:09
  */
 
 const Koa = require('koa');
@@ -10,10 +10,12 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const Router = require('koa-router');
 const koaBody = require('koa-body');
-const render = require('./server/libs/renderDev');
+const renderDev = require('./server/libs/renderDev');
+const render = require('./server/libs/render');
 const path = require('path');
 const koaStatic = require('koa-static');
 const gulp = require('gulp');
+const webpack = require('webpack');
 
 const router = new Router();
 const app = new Koa();
@@ -23,12 +25,6 @@ const port = 9002;
 
 app.use(logger());
 app.use(koaBody());
-
-
-// const path = require('path');
-
-// const koaWebpackHotMiddleware = require('koa-webpack-hot-middleware'); // koa 热更新中间件
-// const koaWebpackMiddleware = require('koa-webpack-middleware'); // koa webpack中间件
 
 const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
 
@@ -53,12 +49,11 @@ const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
   
 // 开发环境
 if(!isProd) {
-    const webpack = require('webpack');
     const devConfig = require('./build/webpack.develop.config');
     const { devMiddleware } = require('koa-webpack-middleware');
     const hotMiddleware = require('./server/libs/hotMiddleware');
-    const hmw = hotMiddleware(compiler);
     const compiler = webpack(devConfig);
+    const hmw = hotMiddleware(compiler);
     const middleware = devMiddleware(compiler, {
         publicPath: devConfig.output.publicPath,
         noInfo: true,
@@ -69,7 +64,7 @@ if(!isProd) {
     let reloadFlag = false;
 
     app.use(middleware);
-    app.use(render(middleware));
+    app.use(renderDev(middleware));
     app.use(hmw);
 
     compiler.plugin('compilation', function (compilation) {
@@ -82,14 +77,14 @@ if(!isProd) {
     });
 
     gulp.watch([
-        './client/skins/**/*.html'
+        './client/skins/**/*.tpl'
     ], (e) => {
         console.log(`${e.path} has ${e.type}, reload current page~`);
         reloadFlag = true;
     });
-
 } else { // 正式环境
-
+    app.use(render);
+    app.use(koaStatic('./dist/client/skins/'));
 }
 
 // 生成路由
