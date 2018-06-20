@@ -44,10 +44,7 @@ module.exports = {
         test: /\.tpl$/,
         use: [
           {
-            loader: path.resolve('./build/util/template-loader.js'),
-            options: {
-              title: '标题'
-            }
+            loader: 'html-withimg-loader',
           }
         ]
       }

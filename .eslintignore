@@ -1,3 +1,4 @@
 index.js
 build/
 *.tpl
+*.html

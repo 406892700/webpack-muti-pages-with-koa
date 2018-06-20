@@ -6,6 +6,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%=require('./templates/head.tpl')%>
+    <% 
+     let ifHead;
+
+     try {
+        ifHead = require('./'+htmlWebpackPlugin.options.assetName.replace(/index$/g, 'head')+'.tpl')
+     } catch(e) {
+        ifHead = '';
+     }
+    %>
+    <% if(ifHead) {%>
+        <%= require('./'+htmlWebpackPlugin.options.assetName.replace(/index$/g, 'head')+'.tpl')%>
+    <% }%>
     <%if(process.env.NODE_ENV === 'production') {%>
     <link rel="stylesheet" href="<%=_chunk.css%>">
     <%}%>
@@ -16,6 +28,7 @@
         <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
         <% }%>
     </div>
+    <img src="<%=require('./page2/images/test.jpg')%>" alt="">
 
     <%if(process.env.NODE_ENV === 'production') {%>
     <script src="<%=_commonChunk.entry%>"></script>

@@ -1,4 +1,3 @@
-<$ var a = 123; $>
 <div>
-    class dkdkdkd
+    <img src="./images/docs-icon-register.png" alt="">
 </div>
