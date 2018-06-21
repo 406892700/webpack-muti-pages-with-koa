@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config ./build/webpack.develop.config.js",
-    "dev": "cross-env NODE_ENV=development nodemon --inspect --watch build --watch server index.js",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect --watch build --watch server --watch index.js index.js",
     "pro": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./build/webpack.production.config.js",
     "eslint": "node_modules/.bin/eslint ./client ./server ./index.js ./build",
     "precommit": "npm run eslint"

@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-21 18:58:32
+ * @Last Modified time: 2018-06-21 19:07:41
  */
 
 const Koa = require('koa');
@@ -75,21 +75,20 @@ generateRouter(router);
 app.use(router.routes()).use(router.allowedMethods());
 
 // x-response-time
-app.use(async (ctx, next) => {
-    const start = Date.now();
-    await next();
-    const ms = Date.now() - start;
-    ctx.set('X-Response-Time', `${ms}ms`);
-});
+// app.use(async (ctx, next) => {
+//     const start = Date.now();
+//     await next();
+//     const ms = Date.now() - start;
+//     ctx.set('X-Response-Time', `${ms}ms`);
+// });
 
 // logger
-
-app.use(async (ctx, next) => {
-    const start = Date.now();
-    await next();
-    const ms = Date.now() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}`);
-});
+// app.use(async (ctx, next) => {
+//     const start = Date.now();
+//     await next();
+//     const ms = Date.now() - start;
+//     console.log(`${ctx.method} ${ctx.url} - ${ms}`);
+// });
 
 app.use(async (ctx) => {
     // we need to explicitly set 404 here
