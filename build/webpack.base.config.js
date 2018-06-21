@@ -24,11 +24,12 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: 'babel-loader'
       },
       {
         test: /\.scss|css$/,
+        // exclude: /^node_modules$/,
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader?sourceMap',
           'css-loader?sourceMap',
@@ -38,6 +39,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
+        // exclude: /^node_modules$/,
         use: 'url-loader?limit=8192&context=client&name=[path][name].[ext]',
       },
       {
@@ -47,7 +49,17 @@ module.exports = {
             loader: 'html-withimg-loader',
           }
         ]
-      }
+      },
+      {
+          test: /\.jsx$/,
+          // exclude: /^node_modules$/,
+          use: 'babel-loader',
+      },
+      {
+          test: /\.vue$/,
+          // exclude: /^node_modules$/,
+          use: 'vue-loader',
+      },
   ]
   },
   resolve: {
@@ -58,6 +70,9 @@ module.exports = {
     }
   },
   plugins: [
+    // new webpack.ProvidePlugin({
+    //     $: 'jquery',
+    // }),
     new cleanWebpackPlugin(
       'dist',
       {

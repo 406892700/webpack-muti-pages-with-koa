@@ -23,11 +23,9 @@
     <%}%>
 </head>
 <body>
-    <div id="root">
-        <% if(htmlWebpackPlugin.options.assetName) {%>
-        <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
-        <% }%>
-    </div>
+    <% if(htmlWebpackPlugin.options.assetName) {%>
+    <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
+    <% }%>
 
     <%if(process.env.NODE_ENV === 'production') {%>
     <script src="<%=_commonChunk.entry%>"></script>

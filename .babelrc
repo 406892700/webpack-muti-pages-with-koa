@@ -1,13 +1,13 @@
 {
     "presets": [
-      ["env", { "modules": false }]
-      
+      ["env", { "modules": false }],
+      "react"
     ],
   
     "comments": false,
     "env": {
       "test": {
-        "presets": ["es2015", "env", "stage-2", {"module": false}],
+        "presets": ["es2015", "env", {"module": false}],
         "plugins": [ "istanbul" ]
       }
     }

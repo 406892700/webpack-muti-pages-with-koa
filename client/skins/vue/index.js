@@ -4,8 +4,3 @@ import './index.scss';
 // $(() => {
 //     $('body').html('page1');
 // });
-
-if (module.hot) {
-    module.hot.accept();
-}
-
