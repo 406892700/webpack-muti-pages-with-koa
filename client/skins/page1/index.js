@@ -1,5 +1,5 @@
 import './index.scss';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 // $(() => {
 //     $('body').html('page1');

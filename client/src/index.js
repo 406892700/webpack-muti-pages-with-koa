@@ -3,18 +3,16 @@ import './index.scss';
 
 Component.say();
 
-const a = 123;
-
 class A {
-  say() {
-    console.log('a')
-  }
+    say() {
+        console.log('a');
+    }
 }
 
 class B extends A {
-  say() {
-    super.say();
-  }
+    say() {
+        super.say();
+    }
 }
 
 new A().say();
