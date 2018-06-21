@@ -19,7 +19,6 @@ const proConfig = {
                 // },
                 vendors: {
                     test: (module, chunks) => {
-                        console.log(module.context);
                         return true;
                     },
                     name: 'commons',

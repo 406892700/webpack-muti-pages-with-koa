@@ -6,13 +6,9 @@
     "configurations": [
         {
             "type": "node",
-            "request": "launch",
-            "name": "npm run pro",
-            "runtimeExecutable": "npm",
-            "runtimeArgs": [
-                "run-script",
-                "pro"
-            ],
+            "request": "attach",
+            "name": "热重启",
+            "restart": true,
             "port": 9229
         },
         {
@@ -22,13 +18,10 @@
             "program": "${workspaceFolder}/index.js",
             "env": {
                 "NODE_ENV": "development"
-            }
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "启动程序",
-            "program": "${workspaceFolder}/index.js"
+            },
+            "args": [
+                
+            ]
         }
     ]
 }

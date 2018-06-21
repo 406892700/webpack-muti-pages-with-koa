@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-20 15:32:09
+ * @Last Modified time: 2018-06-21 13:44:54
  */
 
 const Koa = require('koa');
@@ -27,25 +27,6 @@ app.use(logger());
 app.use(koaBody());
 
 const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
-
-// app.use(async(ctx, next) => {
-//     try {
-//       await next()
-//       const status = ctx.status || 404
-//       if (status === 404) {
-//           ctx.throw(404)
-//       }
-//     } catch (err) {
-//       ctx.status = err.status || 500
-//       if (ctx.status === 404) {
-//         //Your 404.jade
-//         await ctx.render('404')
-//       } else {
-//         //other_error jade
-//         await ctx.render('other_error')
-//       }
-//     }
-//   });
   
 // 开发环境
 if(!isProd) {
@@ -69,7 +50,7 @@ if(!isProd) {
 
     compiler.plugin('compilation', function (compilation) {
         compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-            console.log('html-webpack-plugin-after-emit')
+            // console.log('html-webpack-plugin-after-emit')
             reloadFlag && hmw.hotMiddleware.publish({ action: 'reload' });
             reloadFlag = false;
             cb && cb()
@@ -109,6 +90,31 @@ app.use(async (ctx, next) => {
     await next();
     const ms = Date.now() - start;
     console.log(`${ctx.method} ${ctx.url} - ${ms}`);
+});
+
+app.use(async (ctx) => {
+    // we need to explicitly set 404 here
+    // so that koa doesn't assign 200 on body=
+    ctx.status = 404;
+  
+    switch (ctx.accepts('html', 'json')) {
+      case 'html':
+        ctx.type = 'html';
+        ctx.render('error/index', {
+            status: 404,
+            path: './123.png'
+        });
+        break;
+      default:
+        ctx.body = {
+          message: 'Page Not Found'
+        };
+    }
+});
+  
+
+app.on('error', err => {
+    console.log(err);
 });
 
 app.listen(port);

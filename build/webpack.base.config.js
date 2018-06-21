@@ -64,7 +64,7 @@ module.exports = {
       {
         root: path.resolve(basePath),
         // exclude: ['index.html'],
-        verbose: true
+        verbose: false
       }
     ),
     new MiniCssExtractPlugin({

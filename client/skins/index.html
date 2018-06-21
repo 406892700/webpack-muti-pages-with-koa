@@ -28,7 +28,6 @@
         <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
         <% }%>
     </div>
-    <img src="<%=require('./page2/images/test.jpg')%>" alt="">
 
     <%if(process.env.NODE_ENV === 'production') {%>
     <script src="<%=_commonChunk.entry%>"></script>
