@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config');
-// const getEntys = require('./util/getEntry');
 
 // 开发环境配置
 const devConfig = {

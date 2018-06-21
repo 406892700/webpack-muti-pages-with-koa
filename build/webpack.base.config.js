@@ -54,8 +54,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.vue'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': path.resolve(basePath, './client/src'),
-      '$': path.resolve(basePath, './build/util')
+      '@': path.resolve(basePath, './client/src')
     }
   },
   plugins: [

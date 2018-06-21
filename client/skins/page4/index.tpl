@@ -1,4 +1,3 @@
-<$ var a = 123; $>
 <div>
-    class dkdkdkd
+    page4
 </div>

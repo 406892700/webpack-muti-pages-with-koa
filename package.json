@@ -7,7 +7,8 @@
     "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config ./build/webpack.develop.config.js",
     "dev": "cross-env NODE_ENV=development nodemon --inspect --watch build --watch server index.js",
     "pro": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./build/webpack.production.config.js",
-    "test": "node ./build/dev-server.js --name 1233"
+    "eslint": "node_modules/.bin/eslint ./**/*.js",
+    "precommit": "npm run eslint"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "html-withimg-loader": "^0.1.16",
+    "husky": "^0.14.3",
     "koa-webpack-hot-middleware": "^1.0.3",
     "koa-webpack-middleware": "^1.0.7",
     "mini-css-extract-plugin": "^0.4.0",
