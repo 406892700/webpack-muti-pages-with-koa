@@ -10,7 +10,7 @@
     "eslint": "node_modules/.bin/eslint ./client ./server ./index.js ./build",
     "precommit": "npm run eslint"
   },
-  "author": "",
+  "author": "Simple",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.3",

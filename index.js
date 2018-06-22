@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-22 14:40:28
+ * @Last Modified time: 2018-06-22 18:32:35
  */
 
 const Koa = require('koa');
@@ -70,6 +70,7 @@ if (!isProd) {
     app.use(koaStatic('./dist/client/skins/'));
 }
 
+// 错误处理
 app.use(errorHandlerMiddleware);
 
 // 生成路由
@@ -113,15 +114,15 @@ app.use(async (ctx) => {
 });
   
 
-app.on('error', (err, ctx) => {
-    console.log(err);
-    ctx.status = 500;
-    ctx.render('error/index', {
-        status: 500,
-        errmsg: '服务器错误',
-    });
-    // ctx.body = 'djdjdjdjdjd';
-});
+// app.on('error', (err, ctx) => {
+//     console.log(err);
+//     ctx.status = 500;
+//     ctx.render('error/index', {
+//         status: 500,
+//         errmsg: '服务器错误',
+//     });
+//     // ctx.body = 'djdjdjdjdjd';
+// });
 
 app.listen(port);
 console.log(`DUIBA-H5-INTEGRAL listening on port ${port}`);
