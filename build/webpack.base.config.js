@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const getEntries = require('./util/getEntry');  // 获取入口
@@ -73,6 +74,7 @@ module.exports = {
     // new webpack.ProvidePlugin({
     //     $: 'jquery',
     // }),
+    new VueLoaderPlugin(),
     new cleanWebpackPlugin(
       'dist',
       {

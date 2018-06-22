@@ -1,6 +1,14 @@
-import './index.scss';
-// import $ from 'jquery';
+import Vue from 'vue';
+import App from './app/App.vue';
+import router from './app/router';
 
-// $(() => {
-//     $('body').html('page1');
-// });
+new Vue({
+    el: '#root',
+    router,
+    template: '<App/>',
+    components: { App },
+});
+
+if (module.hot) {
+    module.hot.accept();
+}
