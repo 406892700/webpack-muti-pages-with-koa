@@ -7,5 +7,13 @@
             Page Not Found
         </div>
     </div>
-<$}$>
-<img src="./<$=path$>" alt="">
+<$} else {$>
+    <div id="content">
+        <div class="error-code">
+            <$=status$>
+        </div>
+        <div class="error-desc">
+            <$=errmsg$>
+        </div>
+    </div>
+<$ } $>

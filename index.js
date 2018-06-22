@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-21 19:07:41
+ * @Last Modified time: 2018-06-22 14:40:28
  */
 
 const Koa = require('koa');
@@ -24,6 +24,7 @@ const generateRouter = require('./server/routers/index');
 const devConfig = require('./build/webpack.develop.config');
 const { devMiddleware } = require('koa-webpack-middleware');
 const hotMiddleware = require('./server/libs/hotMiddleware');
+const errorHandlerMiddleware = require('./server/libs/internalErrorHandler');
 
 const port = 9002;
 
@@ -69,6 +70,8 @@ if (!isProd) {
     app.use(koaStatic('./dist/client/skins/'));
 }
 
+app.use(errorHandlerMiddleware);
+
 // 生成路由
 generateRouter(router);
 
@@ -98,9 +101,8 @@ app.use(async (ctx) => {
     switch (ctx.accepts('html', 'json')) {
     case 'html':
         ctx.type = 'html';
-        ctx.render('error/index', {
+        await ctx.render('error/index', {
             status: 404,
-            path: './123.png',
         });
         break;
     default:
@@ -111,8 +113,14 @@ app.use(async (ctx) => {
 });
   
 
-app.on('error', (err) => {
+app.on('error', (err, ctx) => {
     console.log(err);
+    ctx.status = 500;
+    ctx.render('error/index', {
+        status: 500,
+        errmsg: '服务器错误',
+    });
+    // ctx.body = 'djdjdjdjdjd';
 });
 
 app.listen(port);

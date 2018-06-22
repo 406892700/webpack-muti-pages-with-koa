@@ -1,10 +1,6 @@
 /* eslint-disable */
 const { resolve } = require('path')
 const debug = require('debug')('koa-views')
-const consolidate = require('consolidate')
-const send = require('koa-send')
-const getPaths = require('get-paths')
-const pretty = require('pretty')
 const ejs = require('ejs')
 
 module.exports = viewsDevMiddleware
@@ -28,8 +24,4 @@ function viewsDevMiddleware(path, options = {
 
     return next()
   }
-}
-
-function isHtml(ext) {
-  return ext === 'html'
 }
