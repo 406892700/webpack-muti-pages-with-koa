@@ -3,16 +3,17 @@
  * @Author: Simple
  * @Date: 2018-06-19 15:52:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-22 14:45:52
+ * @Last Modified time: 2018-06-22 14:52:06
  */
 
 module.exports = (router) => {
     /**
      * 普通
      */
-    router.get('/page1', async (ctx) => {
+    router.get('/normal', async (ctx) => {
+        // 尝试报错的提示
         const arr = [1, 2];
-        await ctx.render('page1/index', { number: arr[2].name });
+        await ctx.render('normal/index', { number: arr[2].name });
     });
 
     /**
