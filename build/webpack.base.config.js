@@ -16,11 +16,11 @@ const basePath = './';
 module.exports = {
   entry: getEntries('./client/skins'),
   output: {
-    filename: isProd ? '[name].[hash].js' : '[name].[hash].js',
+    filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
     path: path.resolve(basePath, 'dist/client/skins/'),
     publicPath: '/',
   },
-  devtool: 'cheap-module-eval-source-map',
+  
   module: {
     rules: [
       {
@@ -66,13 +66,13 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
+      // vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(basePath, './client/src')
     }
   },
   plugins: [
     // new webpack.ProvidePlugin({
-    //     $: 'jquery',
+    //     $: 'jquery'
     // }),
     new VueLoaderPlugin(),
     new cleanWebpackPlugin(

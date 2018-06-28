@@ -3,7 +3,10 @@
     "globals" : {
       "window": true,
       "document": true,
-      "$": true
+      "$": true,
+      "Vue": true,
+      "React": true,
+      "ReactDom": true
     },
     "env": {
       "browser": true

@@ -1,11 +1,11 @@
 <% const _chunk = htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.assetName] || {}; %>
-<% const _commonChunk = htmlWebpackPlugin.files.chunks['commons'] || {}%>
+<% const _vendorsChunk = htmlWebpackPlugin.files.chunks['vendors'] || {}%>
+<% const _commonChunk = htmlWebpackPlugin.files.chunks['common'] || {}%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%=require('./templates/head.tpl')%>
     <% 
      let ifHead;
 
@@ -21,15 +21,13 @@
     <%if(process.env.NODE_ENV === 'production') {%>
     <link rel="stylesheet" href="<%=_chunk.css%>">
     <%}%>
+    <%=require('./templates/head.tpl')%>
 </head>
 <body>
     <% if(htmlWebpackPlugin.options.assetName) {%>
-    <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
+        <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
     <% }%>
-
-    <%if(process.env.NODE_ENV === 'production') {%>
-    <script src="<%=_commonChunk.entry%>"></script>
-    <%}%>
-    <script src="<%=_chunk.entry%>"></script>
+    <script defer src="http://blog.x2hy.com/cdn/zepto.min.js"></script>
+    <script defer src="<%=_chunk.entry%>"></script>
 </body>
 </html>

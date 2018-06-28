@@ -1,0 +1,6 @@
+module.exports = (router) => {
+    router.get('<%=data.urlPath%>', async (ctx) => {
+        // your code here...
+        await ctx.render('<%=data.moduleName%>/index', {});
+    });
+};

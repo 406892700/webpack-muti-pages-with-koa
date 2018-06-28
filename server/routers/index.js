@@ -1,32 +1,27 @@
-/*
- * 首页路由
- * @Author: Simple
- * @Date: 2018-06-19 15:52:25
- * @Last Modified by: Simple
- * @Last Modified time: 2018-06-22 14:52:06
- */
+const fs = require('fs');
+const path = require('path');
+
+const pathArr = [];
+
+const getRouter = (basePath) => {
+    const dir = path.join(__dirname, basePath);
+    const list = fs.readdirSync(dir);
+    list.forEach((item) => {
+        const currentDir = path.join(dir, item);
+        if (fs.statSync(currentDir).isDirectory()) {
+            getRouter(path.join(basePath, item));
+        } else {
+            pathArr.push(path.join(basePath, item));
+        }
+    });
+};
+
+getRouter('./');
 
 module.exports = (router) => {
-    /**
-     * 普通
-     */
-    router.get('/normal', async (ctx) => {
-        // 尝试报错的提示
-        const arr = [1, 2];
-        await ctx.render('normal/index', { number: arr[2].name });
-    });
-
-    /**
-     * react
-     */
-    router.get('/react', async (ctx) => {
-        await ctx.render('react/index', {});
-    });
-
-    /**
-     * vue
-     */
-    router.get('/vue', async (ctx) => {
-        await ctx.render('vue/index', {});
+    pathArr.slice(1).forEach((item) => {
+        console.log(item);
+        /* eslint-disable */
+        require('./'+item.replace(/\.(js|json)$/, ''))(router);
     });
 };

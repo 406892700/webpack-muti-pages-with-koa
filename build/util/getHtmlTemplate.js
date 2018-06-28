@@ -1,5 +1,6 @@
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const isProd = process.env.NODE_ENV === 'production';
 
 const entries = [];// 入口获取
 const getFilePath = (path) => {
@@ -29,7 +30,12 @@ const getHtmlTemplate = (dir) => {
             filename: '../views/'+itemName.replace(/\.tpl$/g,'.html'),
             assetName: itemName.slice(0, -4),
             cache: true,
-            inject: false
+            inject: false,
+            // minify: { // 坑爹的无法处理带模板标记的html
+            //     caseSensitive: true,
+            //     collapseWhitespace: true,
+            //     customAttrSurround: [[/<\$=?\s+/, /\s*\$>/]]
+            // },
         });
     });
 
