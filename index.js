@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-26 15:43:36
+ * @Last Modified time: 2018-06-28 20:23:33
  */
 
 const Koa = require('koa');
@@ -12,7 +12,7 @@ const Router = require('koa-router');
 const koaBody = require('koa-body');
 const renderDev = require('./server/libs/renderDev');
 const render = require('./server/libs/render');
-const fs = require('fs');
+// const fs = require('fs');
 // const path = require('path');
 const koaStatic = require('koa-static');
 const gulp = require('gulp');
@@ -29,13 +29,7 @@ const errorHandlerMiddleware = require('./server/libs/internalErrorHandler');
 
 const port = 9002;
 
-app.use(logger(
-    // {
-    //     transporter: (str, args) => {
-    //         // console.log(str, args);
-    //     },
-    // }
-));
+app.use(logger());
 app.use(koaBody());
 
 const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
