@@ -37,13 +37,13 @@
 
 ## 开发说明
 > 此脚手架是为了后端渲染而生的，因此开发需要分两个步骤
-
-### 客户端
+### 手动方式
+#### 客户端
 在文件夹 `client/skins/` 下新建文件夹`pagenew`,并且在其中新增
 `index.tpl`,`index.js`,`index.scss`。
 > 因为在多数情况下，html的head部分改动需求不大，我们只改动body中的html部分即可。在这里，只需要在index.tpl中直接写页面即可，js和css会自动对应到同级目录的index.tpl中，如果有需要修改`<head></head>`中的内容，可以在同级目录下新建head.tpl,在里面写入相应标签即可
 
-### 服务端
+#### 服务端
 在完成客户端部分的文件创建后，接着在server/routers/index.js中，加入如下代码
 ```javascript
 router.get('/<%你要的路由名称%>', async(ctx, next) => {
@@ -51,8 +51,8 @@ router.get('/<%你要的路由名称%>', async(ctx, next) => {
     await ctx.render('pagenew/index', {<%传入参数%>});
 });
 ```
-
-### 自动创建路由、视图功能
+### 自动方式
+#### 自动创建路由、视图功能
 因为在大部分情况下，node层路由业务相关性不高，只是做一个后端渲染。在这样的情况下，可以使用命令的方式直接生成视图和路由
 
 ```javascript
