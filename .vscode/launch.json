@@ -11,8 +11,10 @@
             "program": "${workspaceFolder}/build/util/generate",
             "args": [
                 
-                "-n",
-                "12222"
+                "--module",
+                "newTest/hehe",
+                "--path",
+                "/hehe/haha"
             ]
         },
         {

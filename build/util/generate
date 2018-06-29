@@ -7,8 +7,22 @@ const path = require('path');
 const ejs = require('ejs');
 
 const args = process.argv;
-const viewsPath = path.join(__dirname, './client/skins'); // 视图目录
-const serverSidePath = path.join(__dirname, './server/routers'); // 控制器目录
+const templatePath = path.resolve('./build/template')
+const viewsPath = path.resolve('./client/skins'); // 视图目录
+const serverSidePath = path.resolve('./server/routers'); // 控制器目录
+
+var getCmd = (moduleName) => { // 处理深层级的模块
+    const arr = moduleName.split('/');
+    const str = [];
+    arr.forEach((item) => {
+        str.push(`mkdir ${item} && cd ${item}`);
+    })
+
+    return {
+        cmd: str.join(' && '),
+        relativePath: arr.map(() => '../').join('') 
+    }
+}
 
 program
     .version('1.0.0')
@@ -29,8 +43,10 @@ program
         process.exit(0);
     }
 
+    const cmdObj = getCmd(moduleName);
+
     console.log('generating views...');
-    exec(`cp -rf ./build/template/viewTemplate ./client/skins/${moduleName}`, (err) => {
+    exec(`cd ${viewsPath} && ${cmdObj.cmd} && cp -rf ${templatePath}/viewTemplate/* ${viewsPath}/${moduleName}`, (err) => {
         if(err) {
             throw Error(err);
         }
@@ -38,16 +54,17 @@ program
         console.log('views generated!');
     });
 
-    // console.log('generating routers...');
-    exec(`cd ./server/routers && mkdir ${moduleName} && cd ${moduleName}`, (err) => {
+    console.log('generating routers...');
+    
+    exec(`cd ${serverSidePath} && ${cmdObj.cmd}`, (err) => {
         if (err) {
             throw Error(err);
         }
 
-        const tplString = fs.readFileSync(`./build/template/routerTemplate/index.js.template`).toString();
-        console.log(tplString);
+        const tplString = fs.readFileSync(`${templatePath}/routerTemplate/index.js.template`).toString();
+        // console.log(tplString);
 
-        fs.writeFileSync(`./server/routers/${moduleName}/index.js`, ejs.render(tplString, {data: { moduleName, urlPath }}));
+        fs.writeFileSync(`${serverSidePath}/${moduleName}/index.js`, ejs.render(tplString, {data: { moduleName, urlPath }}));
 
         console.log('routers generated!');
     });
