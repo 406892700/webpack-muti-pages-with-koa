@@ -31,13 +31,10 @@ const proConfig = {
     // },   
     plugins: [
         new AfterEmitPlugin(),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('./dll/srcjs-manifest.json'),
-            name: './my-dll.js',
-            scope: 'xyz',
-            sourceType: 'commonjs2'
-          })
+        new MiniCssExtractPlugin({
+            filename: !isProd ? '[name].[hash].css' : '[name].[chunkhash].css',
+            chunkFilename: !isProd ? '[id].[hash].css' : '[id].[chunkhash].css',
+        }),
     ]
 };
 

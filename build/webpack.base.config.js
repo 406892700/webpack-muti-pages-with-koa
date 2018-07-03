@@ -83,10 +83,6 @@ module.exports = {
         verbose: false
       }
     ),
-    new MiniCssExtractPlugin({
-      filename: !isProd ? '[name].[hash].css' : '[name].[chunkhash].css',
-      chunkFilename: !isProd ? '[id].[hash].css' : '[id].[chunkhash].css',
-    }),
     ...getHtmlTemplate('./client/skins')
   ]
 };

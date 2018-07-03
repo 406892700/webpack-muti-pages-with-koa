@@ -10,16 +10,18 @@ const getRouter = (basePath) => {
         const currentDir = path.join(dir, item);
         if (fs.statSync(currentDir).isDirectory()) {
             getRouter(path.join(basePath, item));
-        } else {
+        } else { 
             pathArr.push(path.join(basePath, item));
         }
     });
 };
 
 getRouter('./');
-
 module.exports = (router) => {
-    pathArr.slice(1).forEach((item) => {
+    // 筛选出当前模块，保证不会自己引用自己
+    pathArr.filter((item) => {
+        return !/^index\.js$/.test(item);
+    }).forEach((item) => {
         console.log(item);
         /* eslint-disable */
         require('./'+item.replace(/\.(js|json)$/, ''))(router);
