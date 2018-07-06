@@ -14,10 +14,7 @@ const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
 const basePath = './';
 
 module.exports = {
-  entry: {
-    ...getEntries('./client/skins'),
-    'polyfill': 'babel-polyfill'
-  },
+  entry: getEntries('./client/skins'),
   output: {
     filename: isProd ? '[name].[chunkhash].js' : '[name].[hash].js',
     path: path.resolve(basePath, 'dist/client/skins/'),

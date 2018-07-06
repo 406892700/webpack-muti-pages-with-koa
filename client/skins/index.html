@@ -1,7 +1,6 @@
 <% const _chunk = htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.assetName] || {}; %>
 <% const _vendorsChunk = htmlWebpackPlugin.files.chunks['vendors'] || {}%>
 <% const _commonChunk = htmlWebpackPlugin.files.chunks['common'] || {}%>
-<% const _polyChunk = htmlWebpackPlugin.files.chunks['polyfill'] || {}%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,6 @@
         <%= require('./'+htmlWebpackPlugin.options.assetName+'.tpl')%>
     <% }%>
     <script defer src="http://blog.x2hy.com/cdn/zepto.min.js"></script>
-    <script defer src="<%=_polyChunk.entry%>"></script>
     <script defer src="<%=_chunk.entry%>"></script>
 </body>
 </html>
