@@ -3,13 +3,8 @@
       ["env", { "modules": false }],
       "react"
     ],
-    "comments": false,
-    "env": {
-      "test": {
-        "presets": ["es2015", "env", {"module": false}],
-        "plugins": [ 
-          "istanbul"
-        ]
-      }
-    }
+    "plugins": [
+      
+    ],
+    "comments": false
   }
