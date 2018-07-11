@@ -1,0 +1,42 @@
+/*
+  your code here...
+*/
+.yyb-headbar {
+  height: 65px;
+  position: fixed;
+  width: 100%;
+  background-color: #4A95F2;
+  color: #Fff;
+  line-height: 65px;
+  overflow: hidden;
+  font-size: 18px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.yyb-headbar .point-area {
+   float: left;
+}
+
+.yyb-headbar .point-area span.value {
+   font-size: 21px;
+   font-weight: 400;
+}
+
+.yyb-headbar .link-area {
+   float: right;
+}
+
+.yyb-headbar .link-area a {
+   color: #fff;
+   text-decoration: none;
+}
+
+.yyb-headbar .link-area a .arrow-right {
+   display: inline-block;
+   width: 20px;
+   height: 20px;
+   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAACJUlEQVRYR9XZT6tOURTH8e/Pv4SQMkCKYmBiYnIR6mZCiUyMTHgL8h7kPZCJkZRbigFXQpmYmBgYUJRSJLpF9NOqfSdP99mefZ6zH2evyZmcwefs9l57rXVEY6HGvBSDbW8BzgGbgQVJ72f50UVg2/uBRWBXQi4BFyXdnRW6FPwImB/B/QHOS1qYBboU/AtYuwLsN3BG0oPa6FLwR2DnGFR8zClJj2uiS8FXgOsZ0E/gpKRntdCl4Hj/Vhy0DCgO4ryklzXQReAA2F4F3AYuZEA/gBOSXvWNLgYn9GrgTsrH40zfgGOSXveJ7gRO6DXAPeB0BvQVOCLpTV/ozuCEXgfcj4OWAX1O6Ld9oKcCJ/R64CFwPAP6BByW9G5a9NTghN4AxC04lwF9SOh4do5ewAm9CXgCHMpoolCakxQr3il6Ayd0VHJPgYMZTezlyB6d0L2CE3obEDfdgX+gI3vEgSyK3sEJvR14DkQ5Oi4i1R2V9KVEXAWc0DuAF8CeDCgulUB/nxRdDZzQu9NKx3Nc3JR0aRDghN4LRCEU22SlWJK0cWjg2M+xRYYNtj3Jlrgh6fJ/X2Hb7Rw62+2kNdvtXBxpyNLG1Wy7neLHdjvlpe12Cnjb7bRItttpQm230+Y3NUix3daoyvZV4FqmUBncMDBa9OXp+6h7kOPWWMFIZaMx2IF2c78M9gExYV/u0Yb9Uyb1aFuBs0389pq0jan5XtU2vwb8L3VZ6i2qESB3AAAAAElFTkSuQmCC) no-repeat 0 0;
+   background-size: 100% 100%;
+   vertical-align: sub;
+}
