@@ -1,0 +1,403 @@
+@rem: 46.875rem;
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+html {
+    padding: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+// 红包外容器
+.crop-wrapper {
+    .crop-mask {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 120;
+    }
+
+    .crop-content {
+        position: fixed;
+        z-index: 121;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+
+        .crop-close {
+            position: absolute;
+            width: 44/@rem;
+            height: 44/@rem;
+            right: 10/@rem;
+            top: 10/@rem;
+            background: url(./images/crop-close.png) no-repeat 0 0;
+            background-size: 100% 100%;
+        }
+    }
+
+    // 中奖没中奖的弹层
+    .modal-award {
+        width: 530/@rem;
+        height: 495/@rem;
+        margin-left: -265/@rem;
+        margin-top: -242.5/@rem;
+        // background-color: #fff;
+        background: url(./images/bg-award.png) no-repeat 0 0;
+        background-size: 100% auto;
+        text-align: center;
+
+        .crop-close {
+            right: -49/@rem;
+            top: -80/@rem;
+            background-image: url(./images/crop-close-white.png);
+            background-size: 30/@rem 30/@rem;
+            background-position: 50% 50%;
+        }
+
+        .info-content {
+            position: absolute;
+            z-index: 1;
+            width: 460/@rem;
+            height: 300/@rem; 
+            background-color: #ffefdb;
+            left: 35/@rem;
+            border: 10/@rem solid #fff;
+            color: #83421E;
+            font-size: 30/@rem;
+            line-height: 30/@rem;
+            bottom: 70/@rem;
+            transition: transform 0.6s 0.5s;
+            transform: translateY(-100/@rem);
+
+            .title {
+                margin-top: 30/@rem;
+
+                p {
+                    margin-bottom: 16/@rem;
+                }
+
+                &.pity {
+                    p:first-child {
+                        font-size: 36/@rem;
+                        margin-top: 60/@rem;
+                    }
+                    p:last-child {
+                        font-size: 28/@rem;
+                        line-height: 28/@rem;
+                        margin-top: 52/@rem;
+                    }
+                }
+            }
+
+            .reward {
+                color: #FA1717;
+
+                .value {
+                    font-size: 68/@rem;
+                    line-height: 95/@rem;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .btn-area {
+            position: absolute;
+            width: 100%;
+            height: 282/@rem;
+            background: url(./images/fg-award.png) no-repeat 0 0;
+            background-size: 100% 100%;
+            z-index: 2;
+            bottom: 0;
+            left: 0;
+
+            .info-tips {
+                color: #FFE0A1;
+                font-size: 28/@rem;
+                line-height: 28/@rem;
+                margin-top: 94/@rem;
+            }
+        }
+        
+    }
+
+    // 规则说明弹层
+    .modal-rule {
+        width: 590/@rem;
+        height: 670/@rem;
+        margin-left: -295/@rem;
+        margin-top: -335/@rem;
+        background-color: #fff;
+        border-radius: 24/@rem;
+
+        .crop-close {
+            right: 24/@rem;
+            top: 24/@rem;
+        }
+
+        h4.main-title {
+            font-size: 34/@rem;
+            color: #333333;
+            margin: 50/@rem 0 40/@rem 0;
+        }
+
+        ol {
+            font-size: 28/@rem;
+            line-height: 40/@rem;
+            text-align: left;
+            margin: 0 50/@rem 0 70/@rem;
+            padding-left: 0;
+
+            li {
+                margin-top: 20/@rem;
+            }
+        }
+
+        &.crop-exp {
+            height: 492/@rem;
+            margin-top: -246/@rem;
+
+            .btn-area {
+                margin-top: 70/@rem;
+            }
+        }
+    }
+
+    .modal-type2 {
+        width: 590/@rem;
+        height: 590/@rem;
+        margin-top: -295/@rem;
+        margin-left: -295/@rem;
+        background-color: #fff;
+        border-radius: 50/@rem;
+        overflow: hidden;
+
+        .crop-close {
+            top: 24/@rem;
+            right: 30/@rem;
+            z-index: 9;
+        }
+
+        .title-area {
+            height: 218/@rem;
+            position: relative;
+
+            &:before {
+                content: '';
+                width: 1600/@rem;
+                height: 1600/@rem;
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%);
+                background-image: linear-gradient(130deg, #FF4141 23%, #DB232D 100%);
+                background-size: 590/@rem 218/@rem;
+                background-position: 50% 100%;
+                box-shadow: 0 2px 16px 0 rgba(255,31,31,0.50);
+                border-radius: 50%;
+            }
+
+            .title {
+                position: absolute;
+                width: 100%;
+                color: #fff;
+                font-size: 36/@rem;
+                line-height: 36/@rem;
+                letter-spacing: 0;
+                top: 34/@rem;
+            }
+
+            .icon-money {
+                position: absolute;
+                width: 112/@rem;
+                height: 112/@rem;
+                bottom: -56/@rem;
+                left: 50%;
+                margin-left: -56/@rem;
+                background: url(./images/icon-money-2.png) no-repeat 0 0;
+                background-size: 100% 100%;
+            }
+
+            .icon-money-type2 {
+                position: absolute;
+                width: 190/@rem;
+                height: 131/@rem;
+                bottom: -60/@rem;
+                left: 50%;
+                margin-left: -95/@rem;
+                background: url(./images/icon-money-1.png) no-repeat 0 0;
+                background-size: 100% 100%;
+            }
+
+
+        }
+
+        .info-content {
+            height: 190/@rem;
+            // border: 1px solid #eee;
+            padding-top: 1px;
+            margin-top: 40/@rem;
+
+            p.info-tips {
+                margin: 0;
+                font-size: 28/@rem;
+                line-height: 30/@rem; 
+                color: #333;
+
+                &.more-red-bag {
+                    margin-top: 80/@rem;
+                }
+
+                &.join-activity {
+                    font-size: 30/@rem;
+                    margin-top: 70/@rem;
+                }
+
+                &.sub-title {
+                    color: #999999;
+                    margin-top: 25/@rem;
+
+                }
+
+                &.login-get-redbag {
+                    font-size: 30/@rem;
+                    margin-top: 50/@rem;
+                }
+
+                &.get-cash {
+                    font-size: 30/@rem;
+                    margin-top: 30/@rem;
+
+                    span.color-red {
+                        color: #E32A32;
+                    }
+                }
+            }
+        }
+
+        .btn-area {
+            
+        }
+    }
+
+    .unlock-success {
+        width: 590/@rem;
+        height: 662/@rem;
+        margin-left: -295/@rem;
+        margin-top: -331/@rem;
+        background: url(./images/bg-modal-unlock.png) no-repeat 0 0;
+        background-size: 100% 100%;
+
+        .crop-close {
+            right: 20/@rem;
+            top: 20/@rem;
+        }
+
+        .info-tips {
+            position: absolute;
+            color: #ff4141;
+            font-size: 30/@rem;
+            top: 400/@rem;
+            width: 100%;
+
+            p {
+                margin: 5/@rem 0;
+            }
+        }
+
+        .btn-area {
+            position: absolute;
+            bottom: 50/@rem;
+            width: 100%;
+
+            .unlock-btn {
+                margin: 0 auto;
+                display: block;
+                width: 292/@rem;
+                height: 75/@rem;
+                color: #ff4141;
+                font-size: 32/@rem;
+                line-height: 75/@rem;
+                border: 1px solid #ff4141;
+                border-radius: 75/@rem;
+            }
+
+        }
+    }
+
+    .crop-btn {
+        // box-sizing: content-box;
+        width: 350/@rem;
+        height: 76/@rem;
+        line-height: 76/@rem;
+        display: block;
+        position: absolute;
+        bottom: 50/@rem;
+        left: 50%;
+        margin-left: -175/@rem;
+        font-family: 'PingFangSC-Semibold';
+        color: #83421E;
+        font-size: 30/@rem;
+        // margin: 34/@rem auto;
+        box-shadow: 0 6px 0 0 rgba(0,0,0,0.17);
+        border-radius: 100px;
+        background-image: linear-gradient(0deg, #FFCA79 2%, #FFE49D 98%);
+    }
+
+    .crop-btn-type2 {
+        display: block;
+        width: 410/@rem;
+        height: 84/@rem;
+        background-image: linear-gradient(-179deg, #FF4444 15%, #F3222E 100%);
+        border-radius: 100px;
+        margin: 0 auto;
+        color: #fff;
+        line-height: 84/@rem;
+        font-size: 34/@rem;
+
+        .arrow-right {
+            width: 40/@rem;
+            height: 40/@rem;
+            display: inline-block;
+            vertical-align: sub;
+            background: url(./images/arrow-right.png) no-repeat 0 0;
+            background-size: 100% 100%;
+            margin: 0;
+        }
+    }
+    
+}
+
+.bounceIn {
+    animation-name: bounceIn;
+    animation-duration: .5s;
+    animation-delay: 0s;
+    animation-fill-mode: both;
+}
+
+@keyframes bounceIn {
+    0%,20%,40%,60%,80%,to {
+        animation-timing-function: cubic-bezier(.215,.61,.355,1)
+    }
+
+    0% {
+        opacity: 0;
+        transform: scale3d(.1,.1,.1)
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1)
+    }
+}

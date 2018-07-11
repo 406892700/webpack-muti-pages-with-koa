@@ -39,6 +39,15 @@ module.exports = {
         ]
       },
       {
+        test: /\.less/,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader?sourceMap',
+          'css-loader?sourceMap',
+          'resolve-url-loader?sourceMap',
+          'less-loader?sourceMap',
+        ],
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         // exclude: /^node_modules$/,
         use: 'url-loader?limit=8192&context=client&name=[path][name].[ext]',
