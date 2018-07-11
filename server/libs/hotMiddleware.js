@@ -1,4 +1,7 @@
 /* eslint-disable */
+/**
+ * 改造中间件，使之暴露出hotMiddleware
+ */
 const hotMiddleware = require('webpack-hot-middleware');
 const {
   PassThrough
