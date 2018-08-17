@@ -8,6 +8,15 @@
       "React": true,
       "ReactDom": true
     },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true,
+          "experimentalDecoratorsLe": true
+      }
+  },
     "env": {
       "browser": true
     },

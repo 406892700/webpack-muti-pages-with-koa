@@ -17,3 +17,12 @@ body {
 #footer {
     background-color: red;
 }
+
+.list {
+    border: 1px solid #eee;
+    text-align: left;
+    li {
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+    }
+}

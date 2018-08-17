@@ -254,23 +254,23 @@ window.CropTips = (function () {
 })();
 
 $(function () {
-    window.CropTips.winModal({
-        data: {
-            value: 2
-        },
-        done: function(closeModal, $btn, $total) {
-            window.getMoneyToWallet({
-                height: $btn.offset().top,
-                money: 100000
-            });
+    // window.CropTips.winModal({
+    //     data: {
+    //         value: 2
+    //     },
+    //     done: function(closeModal, $btn, $total) {
+    //         window.getMoneyToWallet({
+    //             height: $btn.offset().top,
+    //             money: 100000
+    //         });
 
-            setTimeout(function() {
-                closeModal();
-            }, 1000);
+    //         setTimeout(function() {
+    //             closeModal();
+    //         }, 1000);
 
-            return true;
-        }
-    });
+    //         return true;
+    //     }
+    // });
 });
 
 if (module.hot) {

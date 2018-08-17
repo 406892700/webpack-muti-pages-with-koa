@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-06-28 20:23:33
+ * @Last Modified time: 2018-08-03 15:22:59
  */
 
 const Koa = require('koa');
@@ -26,11 +26,13 @@ const devConfig = require('./build/webpack.develop.config');
 const { devMiddleware } = require('koa-webpack-middleware');
 const hotMiddleware = require('./server/libs/hotMiddleware');
 const errorHandlerMiddleware = require('./server/libs/internalErrorHandler');
+const cors = require('@koa/cors');
 
 const port = 9002;
 
 app.use(logger());
 app.use(koaBody());
+app.use(cors());
 
 const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
   

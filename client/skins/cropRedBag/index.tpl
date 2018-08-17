@@ -121,3 +121,23 @@
     </div> -->
     <!-- 解锁土地 -->
 <!-- </div> -->
+<script src="http://blog.x2hy.com/cdn/zepto.min.js"></script>
+<input type="hidden" id="plugin_domain" value="//activity.m.duiba.com.cn">
+<script>
+    ;(function() {
+        $.ajax({
+            type: "get",
+            url: $('#plugin_domain').val()+"/activityLog/ajaxBanners",
+            dataType: "json",
+            cache: false,
+            data: {
+                consumerId: window.PLUGIN.consumerId,
+                appId: window.PLUGIN.data.appId
+            },
+            success: function(res) {
+                console.log('发送成功..');
+            },
+            error: function(e) {}
+        });
+    })();
+</script>

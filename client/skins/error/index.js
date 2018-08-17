@@ -1,9 +1,9 @@
 import './index.scss';
-import component from '@/component';
+// import component from '@/component';
 
-const { say } = component;
+// const { say } = component;
 
-say();
+// say();
 
 if (module.hot) {
     module.hot.accept();

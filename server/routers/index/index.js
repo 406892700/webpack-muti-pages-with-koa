@@ -3,4 +3,10 @@ module.exports = (router) => {
         // your code here...
         await ctx.render('index/index', {});
     });
+
+    router.get('/api', async (ctx) => {
+        ctx.body = {
+            key: 123,
+        };
+    });
 };

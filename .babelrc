@@ -4,11 +4,15 @@
       "react"
     ],
     "plugins": [
-      ["transform-runtime", {
+      [
+        "transform-runtime", {
         "helpers": false,
         "polyfill": false,
         "regenerator": true
-      }]
+      }],
+      "transform-class-properties",
+      "transform-object-rest-spread", 
+      "transform-decorators-legacy"
     ],
     "comments": false
   }

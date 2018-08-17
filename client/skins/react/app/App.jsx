@@ -1,9 +1,11 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+// import SinglePage from './SinglePage';
+import Parent from './TestContext';
 
-import App from './Router.jsx';
+// import App from './Router.jsx';
 
 ReactDOM.render(
-    <App />,
+    <Parent />,
     document.getElementById('root')
 );
