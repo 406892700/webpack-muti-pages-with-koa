@@ -1,5 +1,17 @@
 {
-    "extends": "airbnb-base",
+    "extends": [
+      "airbnb-base",
+      "plugin:react/recommended"
+    ],
+    "settings": {
+      "react": {
+        "createClass": "createReactClass",
+        "pragma": "React",
+        "version": "15.0",
+        "flowVersion": "0.53"
+      },
+      "propWrapperFunctions": [ "forbidExtraProps" ]
+    },
     "globals" : {
       "window": true,
       "document": true,
@@ -28,7 +40,7 @@
       "no-console": 0,
       "no-alert": 0,
       "no-debugger": 0,
-      "indent": ["error", 4],
+      "indent": ["error", 2],
       "import/no-unresolved": [0, { "commonjs": true, "amd": true}],
       "import/extensions": 0,
       "import/first": 0,
@@ -46,6 +58,7 @@
           "exports": "always-multiline",
           "functions": "ignore"
       }],
-      "import/no-extraneous-dependencies": 0
+      "import/no-extraneous-dependencies": 0,
+      "react/prop-types": 0
     }
 }
