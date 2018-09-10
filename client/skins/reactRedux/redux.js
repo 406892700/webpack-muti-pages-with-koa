@@ -558,12 +558,14 @@ function compose() {
   if (funcs.length === 1) {
     return funcs[0];
   }
-
-  return funcs.reduce(function (a, b) {
+  const result = funcs.reduce(function (a, b) {
+    debugger
     return function () {
       return a(b.apply(undefined, arguments));
     };
   });
+  console.log(result.toString())
+  return result
 }
 
 /**

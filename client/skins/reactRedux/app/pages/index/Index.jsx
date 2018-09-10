@@ -58,6 +58,6 @@ export default connect((state) => {
   return {
     setValue: (value) => dispatch(setValue(value)),
     change: () => dispatch(change()),
-    getData: () => dispatch(getData('simple', 26)),
+    getData: () => dispatch(getData(Error('222'), 26)),
   }
 })(Index);

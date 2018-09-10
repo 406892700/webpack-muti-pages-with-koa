@@ -1,24 +1,59 @@
-const users = ['simple', 'xhy', 'xuhuaiyuan'];
+const initialState = {
+  list: [],
+  isFetching: false,
+};
 
-const initialState = null;
-
-const GET_NAME_BY_INDEX = 'GET_NAME_BY_INDEX';
-export const getNamebyIndex = (index) => {
+/**
+ * 用户列表
+ */
+export const GET_USER_LIST = 'GET_USER_LIST';
+export const getUserList = (index) => {
   return {
-    type: GET_NAME_BY_INDEX,
+    type: GET_USER_LIST,
     payload: {
       index,
     },
   };
 };
 
+/**
+ * 获取用户列表
+ */
+export const REQUEST_USER_LIST = 'REQUEST_USER_LIST';
+export const requestUserList = (index) => {
+  return {
+    type: REQUEST_USER_LIST,
+    payload: {
+      index,
+    },
+  };
+};
+
+/**
+ * 用户列表请求成功
+ */
+export const RECEIVE_USER_LIST = 'RECEIVE_USER_LIST';
+export const receiveUserList = (list) => {
+  return {
+    type: RECEIVE_USER_LIST,
+    payload: {
+      list,
+    },
+  };
+};
+
 const reducer = (state = initialState, action) => {
-  console.log('fuck1');
-  const { type } = action;
-  switch (type) {
-  case GET_NAME_BY_INDEX:
+  switch (action.type) {
+  case REQUEST_USER_LIST:
     return {
-      user: users[action.payload.index],
+      ...state,
+      isFetching: true,
+    };
+  case RECEIVE_USER_LIST: 
+    return {
+      ...state,
+      list: action.payload.list,
+      isFetching: false,
     };
   default: return state;
   }

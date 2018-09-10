@@ -6,7 +6,7 @@ const baseConfig = require('./webpack.base.config');
 const devConfig = {
     mode: 'development',
     // devtool: 'none',
-    devtool: 'cheap-eval-source-map',
+    devtool: 'cheap-module-eval-source-map',
     // devtool: 'source-map', // 测试线上脚本报错
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
