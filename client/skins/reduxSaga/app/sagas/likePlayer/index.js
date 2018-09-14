@@ -1,25 +1,25 @@
 import { put, call, take, fork, takeEvery, all, takeLatest } from 'redux-saga/effects';
 import fetchApi from '../../libs/fetch';
-import * as indexActions from '../../reducers/index/index';
+import * as likePlayerActions from '../../reducers/likePlayer';
 
 // worker --------------------------------
 
 // getUserList worker
-export function* getUserList(index) {
-  yield put(indexActions.requestUserList(index));
-  const { userlist } = yield call(fetchApi, {
+export function* getUserList(action) {
+  yield put(likePlayerActions.requestPlayerList());
+  const { player } = yield call(fetchApi, {
     query: ` 
     { 
-      userlist {
+      player(u_id: ${action.payload.id}) {
         id
         name
-        age
-        hobby
+        team
+        draft
       }
     }
     `,
   });
-  yield put(indexActions.receiveUserList(userlist));
+  yield put(likePlayerActions.receivePlayerList(player));
 }
 
 
@@ -29,5 +29,5 @@ export default function* () {
   //   const { payload: { index } } = yield take(indexActions.GET_USER_LIST);
   //   yield call(getUserList, index);
   // }
-  yield takeEvery(indexActions.GET_USER_LIST, getUserList);
+  yield takeEvery(likePlayerActions.GET_PLAYER_LIST, getUserList);
 }

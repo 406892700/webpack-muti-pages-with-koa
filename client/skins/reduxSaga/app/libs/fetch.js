@@ -1,14 +1,18 @@
+const url = 'http://localhost:9000/graphql';
 export default (params) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      contentType: 'application/x-www-form-urlencoded',
+      contentType: 'application/json',
+      type: 'post',
+      url,
       ...params,
+      data: JSON.stringify({
+        query: params.query,
+        operationName: null,
+        variables: {},
+      }),
       success: (data) => {
-        if (data.code !== 200) {
-          reject(data.result.msg);
-        } else {
-          resolve(data.result);
-        }
+        resolve(data.data);
       }, 
       error: (err) => {
         reject(err);

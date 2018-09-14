@@ -7,12 +7,10 @@ const initialState = {
  * 用户列表
  */
 export const GET_USER_LIST = 'GET_USER_LIST';
-export const getUserList = (index) => {
+export const getUserList = () => {
   return {
     type: GET_USER_LIST,
-    payload: {
-      index,
-    },
+    payload: {},
   };
 };
 
