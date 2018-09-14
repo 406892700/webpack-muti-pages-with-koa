@@ -1,5 +1,3 @@
-const user = 123;
-
 const initialState = {
   user: '',
 };
@@ -12,7 +10,6 @@ export const getName = () => {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('fuck2');
   const { type } = action;
   switch (type) {
   case GET_NAME:

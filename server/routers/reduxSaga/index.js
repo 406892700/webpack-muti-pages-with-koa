@@ -21,17 +21,17 @@ module.exports = (router) => {
           name: 'simple',
           age: 26,
         }, {
-          name: 'simple',
-          age: 26,
+          name: 'complex',
+          age: 24,
         }, {
-          name: 'simple',
-          age: 26,
+          name: 'normal',
+          age: 22,
         }, {
-          name: 'simple',
-          age: 26,
+          name: 'gaga',
+          age: 12,
         }, {
-          name: 'simple',
-          age: 26,
+          name: 'hehe',
+          age: 20,
         }],
       },
     };

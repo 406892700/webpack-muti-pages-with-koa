@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-08-03 15:22:59
+ * @Last Modified time: 2018-09-10 14:27:19
  */
 
 const Koa = require('koa');
@@ -23,7 +23,9 @@ const app = new Koa();
 const generateRouter = require('./server/routers/index');
 
 const devConfig = require('./build/webpack.develop.config');
-const { devMiddleware } = require('koa-webpack-middleware');
+const {
+  devMiddleware,
+} = require('koa-webpack-middleware');
 const hotMiddleware = require('./server/libs/hotMiddleware');
 const errorHandlerMiddleware = require('./server/libs/internalErrorHandler');
 const cors = require('@koa/cors');
@@ -31,46 +33,50 @@ const cors = require('@koa/cors');
 const port = 9002;
 
 app.use(logger());
-app.use(koaBody());
+app.use(koaBody({
+  multipart: true,
+}));
 app.use(cors());
 
 const isProd = process.env.NODE_ENV === 'production'; // 是否是生产环境
-  
+
 // 开发环境
 if (!isProd) {
-    const compiler = webpack(devConfig);
-    const hmw = hotMiddleware(compiler);
-    const middleware = devMiddleware(compiler, {
-        publicPath: devConfig.output.publicPath,
-        noInfo: true,
-        stats: {
-            colors: true,
-        },
-    });
-    let reloadFlag = false;
+  const compiler = webpack(devConfig);
+  const hmw = hotMiddleware(compiler);
+  const middleware = devMiddleware(compiler, {
+    publicPath: devConfig.output.publicPath,
+    noInfo: true,
+    stats: {
+      colors: true,
+    },
+  });
+  let reloadFlag = false;
 
-    app.use(middleware);
-    app.use(renderDev(middleware));
-    app.use(hmw);
+  app.use(middleware);
+  app.use(renderDev(middleware));
+  app.use(hmw);
 
-    compiler.plugin('compilation', (compilation) => {
-        compilation.plugin('html-webpack-plugin-after-emit', (data, cb) => {
-            // console.log('html-webpack-plugin-after-emit')
-            reloadFlag && hmw.hotMiddleware.publish({ action: 'reload' });
-            reloadFlag = false;
-            cb && cb();
-        });
+  compiler.plugin('compilation', (compilation) => {
+    compilation.plugin('html-webpack-plugin-after-emit', (data, cb) => {
+      // console.log('html-webpack-plugin-after-emit')
+      reloadFlag && hmw.hotMiddleware.publish({
+        action: 'reload',
+      });
+      reloadFlag = false;
+      cb && cb();
     });
+  });
 
-    gulp.watch([
-        './client/skins/**/*.tpl',
-    ], (e) => {
-        console.log(`${e.path} has ${e.type}, reload current page~`);
-        reloadFlag = true;
-    });
+  gulp.watch([
+    './client/skins/**/*.tpl',
+  ], (e) => {
+    console.log(`${e.path} has ${e.type}, reload current page~`);
+    reloadFlag = true;
+  });
 } else { // 正式环境
-    app.use(render);
-    app.use(koaStatic('./dist/client/skins/'));
+  app.use(render);
+  app.use(koaStatic('./dist/client/skins/'));
 }
 
 // 错误处理
@@ -98,24 +104,24 @@ app.use(router.routes()).use(router.allowedMethods());
 // });
 
 app.use(async (ctx) => {
-    // we need to explicitly set 404 here
-    // so that koa doesn't assign 200 on body=
-    ctx.status = 404;
-  
-    switch (ctx.accepts('html', 'json')) {
-    case 'html':
-        ctx.type = 'html';
-        await ctx.render('error/index', {
-            status: 404,
-        });
-        break;
-    default:
-        ctx.body = {
-            message: 'Page Not Found',
-        };
-    }
+  // we need to explicitly set 404 here
+  // so that koa doesn't assign 200 on body=
+  ctx.status = 404;
+
+  switch (ctx.accepts('html', 'json')) {
+  case 'html':
+    ctx.type = 'html';
+    await ctx.render('error/index', {
+      status: 404,
+    });
+    break;
+  default:
+    ctx.body = {
+      message: 'Page Not Found',
+    };
+  }
 });
-  
+
 
 // app.on('error', (err, ctx) => {
 //     console.log(err);
