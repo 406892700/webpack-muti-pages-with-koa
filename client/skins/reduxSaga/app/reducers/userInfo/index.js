@@ -3,12 +3,11 @@ import {
   handleActions,
 } from 'redux-actions';
 
-const initialState = {
+const localStorageInfo = localStorage.getItem('userInfo');
+const initialState = localStorageInfo ? JSON.parse(localStorageInfo) : {
   pending: false,
   msg: '',
-  loginUser: {
-
-  },
+  userInfo: null,
 };
 
 // 登录动作
@@ -27,6 +26,10 @@ export const doLoginSuccess = createAction(DO_LOGIN_SUCCESS);
 export const DO_LOGIN_ERROR = 'DO_LOGIN/ERROR';
 export const doLoginError = createAction(DO_LOGIN_ERROR);
 
+// 登出
+export const LOGIN_OUT = 'LOGIN_OUT';
+export const doLoginOut = createAction(LOGIN_OUT, () => {});
+
 export default handleActions({
   [DO_LOGIN_SUBMIT]: (state) => {
     return {
@@ -38,7 +41,7 @@ export default handleActions({
     const newState = {
       ...state,
       msg: action.payload.msg,
-      loginUser: action.payload.userinfo,
+      loginUser: action.payload.login,
       pending: false,
     };
 
@@ -52,6 +55,13 @@ export default handleActions({
       error: true,
       msg: action.payload,
       pending: false,
+    };
+  },
+  [LOGIN_OUT]: (state) => {
+    localStorage.removeItem('userInfo');
+    return {
+      ...state,
+      loginUser: null,
     };
   },
 }, initialState);

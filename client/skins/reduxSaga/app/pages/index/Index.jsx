@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserList } from '../../reducers/index/index';
+// import { getUserList } from '../../reducers/index/index';
 import { Link } from 'react-router-dom';
 
 class Index extends Component {
-  componentDidMount() {
-    this.props.actions.getUserList();
-  }
-
-  handleClick = (id) => {
-
-  }
-  
   render() {
-    debugger
-    const { indexProps: { list, isFetching } } = this.props;
+    const { 
+      age, id, hobby, name,
+    } = this.props.userInfo;
     return (
       <div>
         <table style={{ borderCollapse: 'collapse' }} border="1">
@@ -24,23 +17,12 @@ class Index extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              isFetching && (<tr><td colSpan="4">加载中...</td></tr>)
-            }
-            {
-              list.map(({ 
-                name, age, id, hobby,
-              }) => {
-                return (
-                  <tr key={id}>
-                    <td>{name}</td>
-                    <td>{age}</td>
-                    <td>{hobby}</td>
-                    <td><Link to={`userinfo/${id}`}>查看</Link></td>
-                  </tr>
-                );
-              })
-            }
+            <tr>
+              <td>{name}</td>
+              <td>{age}</td>
+              <td>{hobby}</td>
+              <td><Link to={`/userinfo/${id}`}>查看</Link></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -50,12 +32,6 @@ class Index extends Component {
 
 export default connect((state) => {
   return {
-    indexProps: state.index,
-  };
-}, (dispatch) => {
-  return {
-    actions: {
-      getUserList: () => dispatch(getUserList()),
-    },
+    userInfo: state.userInfo.loginUser,
   };
 })(Index);

@@ -3,17 +3,31 @@ import fetchApi from '../../libs/fetch';
 import { doLoginSubmit, doLoginSuccess, DO_LOGIN, doLoginError } from '../../reducers/userInfo';
 
 export function* login(action) {
+  const {
+    params: {
+      name, password,
+    },
+  } = action.payload;
   yield put(doLoginSubmit());
   try {
     const data = yield call(fetchApi, {
-      url: '/api/login',
-      type: 'post',
-      data: {
-        ...action.payload.params,
-      },
+      query: ` 
+      query {
+        login(name: "${name}", password: "${password}"){
+          age
+          id
+          hobby
+          name
+        }
+      }
+    `,
     });
-    yield put(doLoginSuccess(data));
-    action.payload.callback();
+    if (data.login) {
+      yield put(doLoginSuccess(data));
+      action.payload.callback();
+    } else {
+      yield put(doLoginError('用户名或者密码错误'));
+    }
   } catch (e) {
     yield put(doLoginError(e));
   }

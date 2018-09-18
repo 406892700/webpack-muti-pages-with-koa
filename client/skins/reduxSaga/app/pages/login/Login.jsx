@@ -8,8 +8,8 @@ class Login extends Component {
     super();
 
     this.state = {
-      username: 'simple',
-      password: 'xhy15057142408',
+      name: '',
+      password: '',
     };
   }
   handleSubmitClick = () => {
@@ -22,7 +22,7 @@ class Login extends Component {
   }
   render() {
     const {
-      username,
+      name,
       password,
     } = this.state;
     const {
@@ -38,10 +38,10 @@ class Login extends Component {
             <div>
               <input 
                 type="text" 
-                value={username}
+                value={name}
                 onChange={(e) => {
                   this.setState({
-                    username: e.target.value,
+                    name: e.target.value,
                   });
                 }}
               />

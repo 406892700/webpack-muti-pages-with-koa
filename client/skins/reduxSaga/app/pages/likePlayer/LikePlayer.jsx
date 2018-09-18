@@ -4,6 +4,7 @@ import { getPlayerList } from '../../reducers/likePlayer';
 
 class LikePlayer extends Component {
   componentDidMount() {
+    // debugger
     const { match: { params }, actions } = this.props;
     actions.getLikePlayer(params.id);
   }
