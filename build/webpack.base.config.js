@@ -25,7 +25,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        // exclude: /node_modules/,
+        exclude: /node_modules/,
         use: 'babel-loader'
       },
       {
@@ -33,7 +33,7 @@ module.exports = {
         // exclude: /^node_modules$/,
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader?sourceMap',
-          'css-loader?sourceMap',
+          'css-loader?sourceMap&modules',
           'resolve-url-loader?sourceMap',
           'sass-loader?sourceMap',
         ]

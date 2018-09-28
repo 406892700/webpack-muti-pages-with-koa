@@ -2,7 +2,7 @@
  * @Author: Simple
  * @Date: 2018-06-08 13:37:25
  * @Last Modified by: Simple
- * @Last Modified time: 2018-08-03 15:22:59
+ * @Last Modified time: 2018-09-27 17:54:54
  */
 
 const Koa = require('koa');
@@ -41,6 +41,7 @@ if (!isProd) {
     const compiler = webpack(devConfig);
     const hmw = hotMiddleware(compiler);
     const middleware = devMiddleware(compiler, {
+        progress: true,
         publicPath: devConfig.output.publicPath,
         noInfo: true,
         stats: {

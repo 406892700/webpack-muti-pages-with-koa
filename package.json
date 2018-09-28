@@ -6,7 +6,7 @@
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config ./build/webpack.develop.config.js",
     "dev": "cross-env NODE_ENV=development nodemon --inspect --watch ./build --watch ./server --watch ./index.js index.js",
-    "pro": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./build/webpack.production.config.js",
+    "pro": "cross-env NODE_ENV=production node_modules/.bin/webpack --config ./build/webpack.production.config.js --progress",
     "eslint": "node_modules/.bin/eslint ./client ./index.js ./build",
     "precommit": "npm run eslint"
   },
@@ -21,9 +21,12 @@
     "babel-plugin-transform-decorators": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "clean-webpack-plugin": "^0.1.19",
@@ -62,6 +65,7 @@
   },
   "dependencies": {
     "@koa/cors": "^2.2.2",
+    "@xm/ApproveTplPrint": "^1.3.15",
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.5.7",
     "ejs": "^2.6.1",

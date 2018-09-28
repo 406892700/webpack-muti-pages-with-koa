@@ -56,7 +56,7 @@ router.get('/<%你要的路由名称%>', async(ctx, next) => {
 因为在大部分情况下，node层路由业务相关性不高，只是做一个后端渲染。在这样的情况下，可以使用命令的方式直接生成视图和路由
 
 ```javascript
-    ./build/util/generate ---module /*要生成的视图文件夹名称*/ --path /*要生成的后端路由url*/
+    ./build/util/generate --module /*要生成的视图文件夹名称*/ --path /*要生成的后端路由url*/
 ```
 
 ### 重启项目

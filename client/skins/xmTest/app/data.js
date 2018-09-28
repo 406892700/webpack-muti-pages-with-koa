@@ -1,11 +1,4 @@
-/**
- * 通过context来传递一些常用参数
- */
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ApproveTplPrint from '@xm/ApproveTplPrint'
-
-const data = {
+export default {
   "retcode": 0,
   "data": {
     "info": {
@@ -109,19 +102,3 @@ const data = {
     }
   }
 }
-class Parent extends Component {
-  handleClick = () => {
-    const info = data.data
-    console.log(info)
-    ApproveTplPrint.downFile({...info,...{orgName:'测试企业名称'}})
-  }
-  render () {
-    return (
-      <div>
-        <button onClick={this.handleClick}>下载测试</button>
-      </div>
-    )
-  }
-}
-
-export default Parent;

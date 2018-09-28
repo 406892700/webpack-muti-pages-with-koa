@@ -1,4 +1,4 @@
-import './app/App.jsx';
+import './app/App';
 // import $ from 'jquery';
 // import component from '@/component';
 import './index.scss';
